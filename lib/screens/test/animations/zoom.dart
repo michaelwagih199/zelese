@@ -20,8 +20,10 @@ class _ZoomAnimationState extends State<ZoomAnimation>
     heartbeatAnimation =
         Tween<double>(begin: 0.0, end: 200.0).animate(controller);
     controller.forward().whenComplete(() {
-      controller.reverse();
+      // controller.reverse();
+
     });
+
 
     /* Future.delayed(Duration(seconds: 1)).then((value) {
       Navigator.of(context).pushReplacementNamed("/dashboard");
@@ -48,19 +50,7 @@ class _ZoomAnimationState extends State<ZoomAnimation>
                 ),
               ],
             ),
-            Align(
-              alignment: Alignment.center,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 200.0),
-                child: Text(
-                  "Flutter Tutorial",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 36.0,
-                      fontWeight: FontWeight.w300),
-                ),
-              ),
-            )
+
           ]),
         );
       },
