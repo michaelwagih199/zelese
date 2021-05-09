@@ -1,6 +1,9 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:zelese/screens/CLINICALLY/CLINICALLY.dart';
+import 'package:zelese/screens/EFFICACY/EFFICACY.dart';
+import 'package:zelese/screens/TOLERABILITY/TOLERABILITY.dart';
 import 'package:zelese/screens/indication/indicationScreen.dart';
 import 'package:zelese/screens/whatIsZelese/whatIsZelesse.dart';
 
@@ -15,6 +18,8 @@ class _PgeState extends State<Pge> {
     new IndicationScreen(),
     new WhatIsZelesse(),
     new EFFICACY(),
+    new TOLERABILITY(),
+    new CLINICALLY(),
   ];
   int _curr = 0;
 
