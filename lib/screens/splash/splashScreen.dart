@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:zelese/components/animations/animationsTween.dart';
 import 'package:zelese/theme/appStyleConfig.dart';
-
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -13,6 +13,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
   AnimationController c;
+
   @override
   void initState() {
     super.initState();
@@ -31,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen>
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: AppStyleConfig.appColors['primary'],
+      backgroundColor: AppStyleConfig.appColors['backgrounLight'],
       body: SafeArea(
         child: LayoutBuilder(
           builder: (builder, constraints) {
@@ -50,50 +51,67 @@ class _SplashScreenState extends State<SplashScreen>
     return Container(
       width: width,
       height: h,
-       margin: EdgeInsets.all(10),
+      margin: EdgeInsets.all(20),
       child: Builder(
-        builder: (context) => Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+        builder: (context) => Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisSize: MainAxisSize.max,
           children: [
             Expanded(
+              flex: 1,
               child: Container(
-                
                 child: SlideTransition(
                   position: AnimationTween.fromLeft(c),
                   child: Image.asset(
                     'assets/images/logo.png',
                     fit: BoxFit.scaleDown,
-                    
                   ),
                 ),
               ),
             ),
             Expanded(
+              flex: 1,
+              child: SlideTransition(
+                position: AnimationTween.fromRight(c),
+                child: Center(
+                  child: Text(
+                    '‫‪MY‬‬ ‫‪COMFORT‬‬ ‫‪PARTNER‬‬',
+                    style: TextStyle(
+                        fontSize: 40,
+                        fontFamily: 'Roboto',
+                        color: AppStyleConfig.appColors['pink']),
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 3,
               child: Container(
                 child: SlideTransition(
                   position: AnimationTween.fromTop(c),
                   child: Image.asset(
-                    'assets/images/vvv.png',
-                    fit: BoxFit.fill,
-                    width: width,
+                    'assets/images/vector1.png',
+                    fit: BoxFit.contain,
                   ),
                 ),
               ),
             ),
             Expanded(
-              child: SlideTransition(
-                position: AnimationTween.fromRight(c),
-                child: Text(
-                  '‫‪MY‬‬ ‫‪COMFORT‬‬ ‫‪PARTNER‬‬',
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontFamily: 'Roboto',
-                      color: AppStyleConfig.appColors['pink']),
+              flex: 1,
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Container(
+                  child: SlideTransition(
+                    position: AnimationTween.fromRight(c),
+                    child: Image.asset('assets/images/logoCompany1.png',
+                        fit: BoxFit.scaleDown),
+                  ),
                 ),
               ),
             ),
           ],
+
         ),
       ),
     );
@@ -107,38 +125,49 @@ class _SplashScreenState extends State<SplashScreen>
       child: Builder(
         builder: (context) => Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-              child: SlideTransition(
-                position: AnimationTween.fromLeft(c),
-                child: Image.asset(
-                  'assets/images/logo.png',
-                  fit: BoxFit.scaleDown
+            Expanded(
+              flex: 1,
+              child: Container(
+                margin: EdgeInsets.fromLTRB(50, 5, 50, 5),
+                child: SlideTransition(
+                  position: AnimationTween.fromLeft(c),
+                  child: Image.asset('assets/images/logo.png',
+                      fit: BoxFit.scaleDown),
                 ),
               ),
             ),
-            Container(
-              child: SlideTransition(
-                position: AnimationTween.fromTop(c),
-                child: Image.asset(
-                  'assets/images/vvv.png',
-                  fit: BoxFit.fill,
-                  width: width,
-                ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.fromLTRB(0, 0, 0, 20),
+            Expanded(
+              flex: 1,
               child: SlideTransition(
                 position: AnimationTween.fromRight(c),
                 child: Text(
                   '‫‪MY‬‬ ‫‪COMFORT‬‬ ‫‪PARTNER‬‬',
                   style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 25,
                       fontFamily: 'Roboto',
                       color: AppStyleConfig.appColors['pink']),
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 2,
+              child: Container(
+                child: SlideTransition(
+                  position: AnimationTween.fromRight(c),
+                  child: Image.asset('assets/images/vector1.png',
+                      fit: BoxFit.scaleDown),
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Container(
+                child: SlideTransition(
+                  position: AnimationTween.fromRight(c),
+                  child: Image.asset('assets/images/logoCompany1.png',
+                      fit: BoxFit.scaleDown),
                 ),
               ),
             ),

@@ -4,14 +4,14 @@ import 'package:flutter_svg/svg.dart';
 import 'package:zelese/components/animations/animationsTween.dart';
 import 'package:zelese/theme/appStyleConfig.dart';
 
-class CLINICALLY extends StatefulWidget {
-  CLINICALLY({Key key}) : super(key: key);
+class CLINICALLYLandScabe extends StatefulWidget {
+  CLINICALLYLandScabe({Key key}) : super(key: key);
 
   @override
-  _CLINICALLYState createState() => _CLINICALLYState();
+  _CLINICALLYLandScabeState createState() => _CLINICALLYLandScabeState();
 }
 
-class _CLINICALLYState extends State<CLINICALLY> with TickerProviderStateMixin {
+class _CLINICALLYLandScabeState extends State<CLINICALLYLandScabe> with TickerProviderStateMixin {
   AnimationController c, zoomC;
   Animation zoomInAnimate;
 

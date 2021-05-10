@@ -33,81 +33,85 @@ class _IndicationScreenState extends State<IndicationScreen>
   }
 
   var pageRes = <String, String>{
-    'title': 'INDICATIONS',
-    'subTtile':
-        'An advanced formula developedby cosmetics and skin care experts',
+    'layer1': 'assets/images/indicationLasyer1.png',
+    'layer2': 'assets/images/indicationLasyer2.png',
+    'layer3': 'assets/images/indicationLasyer3.png',
+    'layer4': 'assets/images/indicationLasyer4.png',
   };
+
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return InteractiveViewer(
-      boundaryMargin: const EdgeInsets.fromLTRB(50, 100, 50, 100),
-      minScale: 0.1,
-      maxScale: 1.5,
-      child: Container(
+    return Container(
         width: width,
         margin: EdgeInsets.all(10),
         color: AppStyleConfig.appColors['backgrounLight'],
         child: Builder(
-          builder: (context) => Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+          builder: (context) => ListView(
             children: [
-              Container(
-                width: width,
-                child: SlideTransition(
-                  position: AnimationTween.fromTop(_controller),
-                  child: SvgPicture.asset(
-                    'assets/images/subTitleIndication.svg',
-                    fit: BoxFit.scaleDown,
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(top: 10),
+
                     width: width,
-                  ),
-                ),
-              ),
-              Container(
-                width: width,
-                child: SlideTransition(
-                  position: AnimationTween.fromLeft(c2),
-                  child: SvgPicture.asset(
-                    'assets/images/indication.svg',
-                    fit: BoxFit.fill,
-                    width: width,
-                  ),
-                ),
-              ),
-              Container(
-                width: width,
-                child: AnimatedBuilder(
-                  animation: heartbeatAnimation,
-                  builder: (context, widget) {
-                    return Image.asset(
-                      'assets/images/VULVOVAGINITIS.png',
-                      fit: BoxFit.scaleDown,
-                      width: heartbeatAnimation.value,
-                      height: heartbeatAnimation.value,
-                    );
-                  },
-                ),
-              ),
-              Container(
-                child: SlideTransition(
-                  position: AnimationTween.fromLeft(c2),
-                  child: Column(
-                    children: [
-                      Divider(
-                        color: AppStyleConfig.appColors['pink'],
+                    child: SlideTransition(
+                      position: AnimationTween.fromTop(_controller),
+                      child: Image.asset(
+                        pageRes['layer1'],
+                        fit: BoxFit.scaleDown,
                       ),
-                      SvgPicture.asset('assets/images/r1.svg',
-                          fit: BoxFit.scaleDown),
-                    ],
+                    ),
                   ),
-                ),
+                  Container(
+                    margin: EdgeInsets.only(top: 10),
+
+                    width: width,
+                    child: SlideTransition(
+                      position: AnimationTween.fromLeft(c2),
+                      child: Image.asset(
+                        pageRes['layer2'],
+                        fit: BoxFit.scaleDown,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 10),
+                    width: width,
+                    child: SlideTransition(
+                      position: AnimationTween.fromBottom(c2),
+                      child: Image.asset(
+                        pageRes['layer3'],
+                        fit: BoxFit.scaleDown,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 10),
+
+                    child: SlideTransition(
+                      position: AnimationTween.fromLeft(c2),
+                      child: Column(
+                        children: [
+                          Divider(
+                            color: AppStyleConfig.appColors['pink'],
+                          ),
+                          Image.asset(pageRes['layer4'],
+                              fit: BoxFit.scaleDown),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
         ),
-      ),
+
     );
   }
 

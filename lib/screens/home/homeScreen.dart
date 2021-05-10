@@ -5,9 +5,13 @@ import 'package:zelese/components/utilities/vertivalDevider.dart';
 import 'package:zelese/screens/phoneScreen/CLINICALLY/CLINICALLY.dart';
 import 'package:zelese/screens/phoneScreen/EFFICACY/EFFICACY.dart';
 import 'package:zelese/screens/phoneScreen/TOLERABILITY/TOLERABILITY.dart';
+import 'package:zelese/screens/phoneScreen/homeViewer/homePager.dart';
 import 'package:zelese/screens/phoneScreen/indication/indicationScreen.dart';
 import 'package:zelese/screens/phoneScreen/whatIsZelese/whatIsZelesse.dart';
-import 'package:zelese/screens/tabletScreen/EFFICACY/EFFICACY.dart';
+import 'package:zelese/screens/tabletScreen/CLINICALLYLandScab/CLINICALLY.dart';
+import 'package:zelese/screens/tabletScreen/EFFICACYLand/EFFICACY.dart';
+import 'package:zelese/screens/tabletScreen/HomePager/HomePagerLandScabe.dart';
+import 'package:zelese/screens/tabletScreen/TOLERABILITYLand/TOLERABILITY.dart';
 import 'package:zelese/screens/tabletScreen/indication/indicationScreen.dart';
 import 'package:zelese/screens/tabletScreen/whatIsZelese/whatIsZelesse.dart';
 
@@ -36,6 +40,22 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  Color zeleseColor;
+  Color indicationColor;
+  Color efficacyColor;
+  Color tolarabilityColor;
+  Color CLINICALLYColor;
+
+  resetColors() {
+    setState(() {
+      zeleseColor = AppStyleConfig.appColors['primary'];
+      indicationColor = AppStyleConfig.appColors['primary'];
+      efficacyColor = AppStyleConfig.appColors['primary'];
+      tolarabilityColor = AppStyleConfig.appColors['primary'];
+      CLINICALLYColor = AppStyleConfig.appColors['primary'];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -47,22 +67,26 @@ class _HomeScreenState extends State<HomeScreen> {
       'drawer3': 'assets/images/drawer3.png',
       'drawer4': 'assets/images/drawer4.png',
       'drawer5': 'assets/images/drawer5.png',
+      'drawerNew': 'assets/images/drawerNew.png',
     };
 
     List<Widget> _list = <Widget>[
-      new IndicationScreen(),
+      new HomePager(),
       new WhatIsZelesse(),
+      new IndicationScreen(),
       new EFFICACY(),
-      new TOLERABILITY(),
       new CLINICALLY(),
+      new TOLERABILITY(),
     ];
 
     List<Widget> _listLandScape = <Widget>[
-      new IndicationLandScabeScreen(),
+      new HomePagerLandScabe(),
       new WhatIsZelesseLandScabe(),
+      new IndicationLandScabeScreen(),
       new EFFICACYLandScabe(),
+      new CLINICALLYLandScabe(),
+      new TOLERABILITYLandScab(),
     ];
-
 
     return Scaffold(
       body: SafeArea(
@@ -109,7 +133,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Container(
                     child: IconButton(
-                        icon: Icon(Icons.menu, color: Colors.pinkAccent),
+                        icon: Icon(Icons.menu,
+                            color: AppStyleConfig.appColors['lima']),
                         onPressed: showMenu),
                   ),
                   Container(
@@ -145,7 +170,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Visibility(
                     visible: _isMenuVisable,
                     child: Container(
-                      width: 120,
                       margin: EdgeInsets.all(10),
                       decoration: myBoxDecoration(),
                       child: Column(
@@ -153,54 +177,52 @@ class _HomeScreenState extends State<HomeScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          CustomAppBarButton('INDICATIONS', 12, 'MinionPro',
-                              Colors.white, myBoxDecoration(), () {
-                            setState(() {
-                              pageController.jumpToPage(0);
-                              _isMenuVisable = false;
-                            });
-                          }),
-                          Divider(
-                            color: AppStyleConfig.appColors['pink'],
-                          ),
-                          CustomAppBarButton('WHAT IS ZELESSE', 12, 'MinionPro',
-                              Colors.white, drawerDecoration(), () {
+                          CustomAppBarButton(
+                              'ZELESSE', 20, 'MinionPro', Colors.white, null,
+                              () {
                             setState(() {
                               pageController.jumpToPage(1);
                               _isMenuVisable = false;
                             });
                           }),
                           Divider(
-                            color: AppStyleConfig.appColors['pink'],
+                            color: Colors.white,
                           ),
-                          CustomAppBarButton('EFFICACY', 12, 'MinionPro',
-                              Colors.white, drawerDecoration(), () {
+                          CustomAppBarButton('INDICATIONS', 20, 'MinionPro',
+                              Colors.white, null, () {
                             setState(() {
                               pageController.jumpToPage(2);
                               _isMenuVisable = false;
                             });
                           }),
                           Divider(
-                            color: AppStyleConfig.appColors['pink'],
+                            color: Colors.white,
                           ),
-                          CustomAppBarButton('TOLERABILITY', 12, 'MinionPro',
-                              Colors.white, drawerDecoration(), () {
+                          CustomAppBarButton(
+                              'EFFICACY', 20, 'MinionPro', Colors.white, null,
+                              () {
                             setState(() {
                               pageController.jumpToPage(3);
                               _isMenuVisable = false;
                             });
                           }),
                           Divider(
-                            color: AppStyleConfig.appColors['pink'],
+                            color: Colors.white,
                           ),
-                          CustomAppBarButton(
-                              'CLINICALLY PROVEN EFFICACY',
-                              12,
-                              'MinionPro',
-                              Colors.white,
-                              drawerDecoration(), () {
+                          CustomAppBarButton('CLINICALLY EFFICACY', 20,
+                              'MinionPro', Colors.white, null, () {
                             setState(() {
                               pageController.jumpToPage(4);
+                              _isMenuVisable = false;
+                            });
+                          }),
+                          Divider(
+                            color: Colors.white,
+                          ),
+                          CustomAppBarButton('TOLERABILITY', 20, 'MinionPro',
+                              Colors.white, null, () {
+                            setState(() {
+                              pageController.jumpToPage(5);
                               _isMenuVisable = false;
                             });
                           }),
@@ -239,7 +261,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
                 child: Container(
                   margin: EdgeInsets.all(5),
-                  child: Image.asset(drawers['drawer1'], fit: BoxFit.cover),
+                  child: Image.asset(drawers['drawerNew'], fit: BoxFit.cover),
                 ),
               ),
               GestureDetector(
@@ -263,7 +285,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
                 child: Container(
                   margin: EdgeInsets.all(5),
-                  child: Image.asset(drawers['drawer3'], fit: BoxFit.cover),
+                  child: Image.asset(drawers['drawer1'], fit: BoxFit.cover),
                 ),
               ),
               GestureDetector(
@@ -275,7 +297,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
                 child: Container(
                   margin: EdgeInsets.all(5),
-                  child: Image.asset(drawers['drawer4'], fit: BoxFit.cover),
+                  child: Image.asset(drawers['drawer3'], fit: BoxFit.cover),
                 ),
               ),
               GestureDetector(
@@ -290,6 +312,18 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Image.asset(drawers['drawer5'], fit: BoxFit.cover),
                 ),
               ),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    pageController.jumpToPage(5);
+                    _isDrawableVisible = false;
+                  });
+                },
+                child: Container(
+                  margin: EdgeInsets.all(5),
+                  child: Image.asset(drawers['drawer4'], fit: BoxFit.cover),
+                ),
+              ),
             ],
           ),
         ),
@@ -297,7 +331,8 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Column tabletColumn(List<Widget> _listLandScape, Map<String, String> drawers) {
+  Column tabletColumn(
+      List<Widget> _listLandScape, Map<String, String> drawers) {
     return Column(
       children: [
         Expanded(
@@ -324,32 +359,73 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Container(
-                    margin: EdgeInsets.only(left: 20),
-                    child: Image.asset('assets/images/logo.png',
-                        width: 100, height: 70, fit: BoxFit.scaleDown),
+                  GestureDetector(
+                    onTap: () {
+                      pageController.jumpTo(0);
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(left: 20),
+                      child: Image.asset('assets/images/logo.png',
+                          width: 100, height: 70, fit: BoxFit.scaleDown),
+                    ),
                   ),
                   CustomVerticalDevider(),
                   CustomAppBarButton(
-                      'INDICATIONS', 12, '', Colors.white, drawerDecoration(),
-                      () {
-                    setState(() {});
+                      'ZELESSE',
+                      20,
+                      '',
+                      AppStyleConfig.appColors['lima'],
+                      ZELESSEDecoration(), () {
+                    pageController.jumpToPage(1);
+                    resetColors();
+                    zeleseColor = AppStyleConfig.appColors['orgwany'];
                   }),
                   CustomVerticalDevider(),
                   CustomAppBarButton(
-                      'EFFICACY', 12, '', Colors.white, drawerDecoration(), () {
-                    setState(() {});
+                      'INDICATIONS',
+                      20,
+                      '',
+                      AppStyleConfig.appColors['lima'],
+                      INDICATIONSDecoration(), () {
+                    pageController.jumpToPage(2);
+                    resetColors();
+                    indicationColor = AppStyleConfig.appColors['orgwany'];
                   }),
                   CustomVerticalDevider(),
                   CustomAppBarButton(
-                      'TOLERABILITY', 12, '', Colors.white, drawerDecoration(),
-                      () {
-                    setState(() {});
+                      'EFFICACY',
+                      20,
+                      '',
+                      AppStyleConfig.appColors['lima'],
+                      EFFICACYDecoration(), () {
+                    pageController.jumpToPage(3);
+
+                    resetColors();
+                    efficacyColor = AppStyleConfig.appColors['orgwany'];
                   }),
                   CustomVerticalDevider(),
-                  CustomAppBarButton('PROVEN EFFICACY', 12, '', Colors.white,
-                      drawerDecoration(), () {
-                    setState(() {});
+                  CustomAppBarButton(
+                      'CLINICALLY EFFICACY',
+                      20,
+                      '',
+                      AppStyleConfig.appColors['lima'],
+                      CLINICALLYDecoration(), () {
+                    pageController.jumpToPage(4);
+
+                    resetColors();
+                    CLINICALLYColor = AppStyleConfig.appColors['orgwany'];
+                  }),
+                  CustomVerticalDevider(),
+                  CustomAppBarButton(
+                      'TOLERABILITY',
+                      20,
+                      '',
+                      AppStyleConfig.appColors['lima'],
+                      TOLERABILITYDecoration(), () {
+                    pageController.jumpToPage(5);
+
+                    resetColors();
+                    tolarabilityColor = AppStyleConfig.appColors['orgwany'];
                   }),
                 ],
               ),
@@ -367,14 +443,56 @@ class _HomeScreenState extends State<HomeScreen> {
                 physics: BouncingScrollPhysics(),
                 controller: pageController,
                 onPageChanged: (num) {
+
                   setState(() {
+
                     curr = num;
+                    switch (num) {
+                      case 1:
+                        {
+                          resetColors();
+                          zeleseColor = AppStyleConfig.appColors['orgwany'];
+                        }
+                        break;
+                      case 2:
+                        {
+                          resetColors();
+                          indicationColor = AppStyleConfig.appColors['orgwany'];
+                        }
+                        break;
+                      case 3:
+                        {
+                          resetColors();
+                          efficacyColor = AppStyleConfig.appColors['orgwany'];
+                        }
+                        break;
+                      case 4:
+                        {
+                          resetColors();
+                          CLINICALLYColor = AppStyleConfig.appColors['orgwany'];
+                        }
+                        break;
+                      case 5:
+                        {
+                          resetColors();
+                          tolarabilityColor = AppStyleConfig.appColors['orgwany'];
+                        }
+                        break;
+
+                      default:
+                        {
+                          resetColors();
+                        }
+                        break;
+                    }
+
                   });
                 },
               ),
             ]),
           ),
         ),
+        alignDrawer(drawers),
         bottomBar(),
       ],
     );
@@ -384,7 +502,21 @@ class _HomeScreenState extends State<HomeScreen> {
     return Expanded(
       flex: 1,
       child: Container(
-        color: AppStyleConfig.appColors['bottomBar'],
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(15),
+            topRight: Radius.circular(15),
+          ),
+          color: AppStyleConfig.appColors['primary'],
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 1,
+              blurRadius: 2,
+              offset: Offset(0, 2), // changes position of shadow
+            ),
+          ],
+        ),
         child: Container(
           margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
           child: Row(
@@ -394,20 +526,20 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   IconButton(
-                    icon: Icon(Icons.arrow_back, color: Colors.pinkAccent),
+                    icon: Image.asset('assets/images/arrowBack.png'),
                     onPressed: previousPage,
                   ),
                   IconButton(
-                      icon: Icon(Icons.home_filled, color: Colors.pinkAccent),
+                      icon: Image.asset('assets/images/homeIcon.png'),
                       onPressed: () {
                         pageController.jumpToPage(0);
                       }),
                   IconButton(
-                    icon: Icon(Icons.grid_view, color: Colors.pinkAccent),
+                    icon: Image.asset('assets/images/dashBoeardIcon.png'),
                     onPressed: showDrawer,
                   ),
                   IconButton(
-                      icon: Icon(Icons.arrow_forward, color: Colors.pinkAccent),
+                      icon: Image.asset('assets/images/nextArrowIcon.png'),
                       onPressed: nextPage),
                 ],
               ),
@@ -434,19 +566,53 @@ class _HomeScreenState extends State<HomeScreen> {
 
   BoxDecoration myBoxDecoration() {
     return BoxDecoration(
-      color: Colors.black.withOpacity(0.8),
-      border: Border(
-        top: BorderSide(
-          color: Colors.pink,
-          width: 3.0,
-        ),
+      color: AppStyleConfig.appColors['orgwany'].withOpacity(0.8),
+      borderRadius: BorderRadius.only(
+        bottomRight: Radius.circular(20),
+        bottomLeft: Radius.circular(20),
       ),
     );
   }
 
-  BoxDecoration drawerDecoration() {
+  BoxDecoration ZELESSEDecoration() {
     return BoxDecoration(
-      border: Border.all(color: AppStyleConfig.appColors['pink'], width: 2.0),
+      color: zeleseColor,
+      borderRadius: BorderRadius.all(
+          Radius.circular(3.0) //                 <--- border radius here
+          ),
+    );
+  }
+
+  BoxDecoration TOLERABILITYDecoration() {
+    return BoxDecoration(
+      color: tolarabilityColor,
+      borderRadius: BorderRadius.all(
+          Radius.circular(3.0) //                 <--- border radius here
+          ),
+    );
+  }
+
+  BoxDecoration CLINICALLYDecoration() {
+    return BoxDecoration(
+      color: CLINICALLYColor,
+      borderRadius: BorderRadius.all(
+          Radius.circular(3.0) //                 <--- border radius here
+          ),
+    );
+  }
+
+  BoxDecoration EFFICACYDecoration() {
+    return BoxDecoration(
+      color: efficacyColor,
+      borderRadius: BorderRadius.all(
+          Radius.circular(3.0) //                 <--- border radius here
+          ),
+    );
+  }
+
+  BoxDecoration INDICATIONSDecoration() {
+    return BoxDecoration(
+      color: indicationColor,
       borderRadius: BorderRadius.all(
           Radius.circular(3.0) //                 <--- border radius here
           ),

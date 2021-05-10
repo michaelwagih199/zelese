@@ -34,88 +34,70 @@ class _IndicationLandScabeScreenState extends State<IndicationLandScabeScreen>
   }
 
   var pageRes = <String, String>{
-    'title': 'INDICATIONS',
-    'subTtile':
-        'An advanced formula developedby cosmetics and skin care experts',
+    'layer1': 'assets/images/indicatrionLandLayer1.png',
+    'layer2': 'assets/images/indicatrionLandLayer2.png',
+    'layer3': 'assets/images/indicatrionLandLayer3.png',
+    'layer4': 'assets/images/indicatrionLandLayer4.png',
   };
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return InteractiveViewer(
-      boundaryMargin: const EdgeInsets.fromLTRB(50, 100, 50, 100),
-      minScale: 0.1,
-      maxScale: 1.5,
-      child: Container(
-        width: width,
-        color: AppStyleConfig.appColors['backgrounLight'],
-        child: Builder(
-          builder: (context) => ListView(
-            children: [
-              Container(
-                width: width,
-                margin: EdgeInsets.fromLTRB(10, 5, 5, 10),
-                child: SlideTransition(
-                  position: AnimationTween.fromTop(_controller),
-                  child: SvgPicture.asset(
-                    'assets/images/subTitleIndication.svg',
-                    fit: BoxFit.scaleDown,
-                  ),
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: Container(
-                      width: width,
-                      child: SlideTransition(
-                        position: AnimationTween.fromLeft(c2),
-                        child: SvgPicture.asset(
-                          'assets/images/indication.svg',
-                          fit: BoxFit.scaleDown,
-                        
-                        ),
-                      ),
+    return Container(
+      margin: EdgeInsets.all(40),
+      width: width,
+      height: height,
+      color: AppStyleConfig.appColors['backgrounLight'],
+      child: Builder(
+        builder: (context) => ListView(
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Container(
+                  child: SlideTransition(
+                    position: AnimationTween.fromTop(_controller),
+                    child: Image.asset(
+                      pageRes['layer1'],
+                      fit: BoxFit.contain,
                     ),
                   ),
-                  Expanded(
-                    child: Container(
-                      width: width,
-                      child: AnimatedBuilder(
-                        animation: heartbeatAnimation,
-                        builder: (context, widget) {
-                          return Image.asset(
-                            'assets/images/VULVOVAGINITIS.png',
-                            fit: BoxFit.scaleDown,
-                            width: heartbeatAnimation.value,
-                            height: heartbeatAnimation.value,
-                          );
-                        },
-                      ),
+                ),
+                Container(
+                  margin: EdgeInsets.fromLTRB(10, 30, 10, 0),
+                  child: SlideTransition(
+                    position: AnimationTween.fromTop(_controller),
+                    child: Image.asset(
+                      pageRes['layer2'],
+                      fit: BoxFit.contain,
                     ),
                   ),
-                ],
-              ),
+                ),
+                Container(
+                  margin: EdgeInsets.fromLTRB(10, 30, 10, 0),
 
-               Container(
-                child: SlideTransition(
-                  position: AnimationTween.fromLeft(c2),
-                  child: Column(
-                    children: [
-                      Divider(
-                        color: AppStyleConfig.appColors['pink'],
-                      ),
-                      SvgPicture.asset('assets/images/r1.svg',
-                          fit: BoxFit.scaleDown),
-                    ],
+                  child: SlideTransition(
+                    position: AnimationTween.fromTop(_controller),
+                    child: Image.asset(
+                      pageRes['layer3'],
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
-              ),
-
-            ],
-          ),
+                Container(
+                  child: SlideTransition(
+                    position: AnimationTween.fromBottom(_controller),
+                    child: Image.asset(
+                      pageRes['layer4'],
+                      fit: BoxFit.scaleDown,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

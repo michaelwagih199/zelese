@@ -30,18 +30,14 @@ class _EFFICACYState extends State<EFFICACY> with TickerProviderStateMixin {
       'layer2': 'assets/images/EFFICACYLayer2.svg',
       'layer3': 'assets/images/EFFICACYLayer3.svg',
       'layer4': 'assets/images/EFFICACYLayer4.png',
-      'layer5': 'assets/images/EFFICACYLayer5.svg',
+      'layer5': 'assets/images/EFFICACYLayer5.png',
       'layer6': 'assets/images/EFFICACYLayer6.svg',
     };
 
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
-    return InteractiveViewer(
-      boundaryMargin: const EdgeInsets.fromLTRB(50, 100, 50, 100),
-      minScale: 0.1,
-      maxScale: 1.5,
-      child: Container(
+    return  Container(
         width: width,
         height: height,
         margin: EdgeInsets.all(15),
@@ -49,25 +45,13 @@ class _EFFICACYState extends State<EFFICACY> with TickerProviderStateMixin {
         child: Builder(
           builder: (context) => ListView(
             children: [
+
               Container(
-                width: width,
-                child: SlideTransition(
-                  position: AnimationTween.fromTop(c),
-                  child: SvgPicture.asset(
-                    pageRes['layer1'],
-                    fit: BoxFit.fill,
-                    width: width,
-                  ),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 10),
                 child: SlideTransition(
                   position: AnimationTween.fromRight(c),
                   child: SvgPicture.asset(
                     pageRes['layer2'],
-                    fit: BoxFit.fill,
-                    width: width,
+                    fit: BoxFit.scaleDown,
                   ),
                 ),
               ),
@@ -78,7 +62,16 @@ class _EFFICACYState extends State<EFFICACY> with TickerProviderStateMixin {
                   child: SvgPicture.asset(
                     pageRes['layer3'],
                     fit: BoxFit.fill,
-                    width: width,
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 10),
+                child: SlideTransition(
+                  position: AnimationTween.fromBottom(c),
+                  child: Image.asset(
+                    pageRes['layer4'],
+                    fit: BoxFit.fill,
                   ),
                 ),
               ),
@@ -87,28 +80,14 @@ class _EFFICACYState extends State<EFFICACY> with TickerProviderStateMixin {
                 child: SlideTransition(
                   position: AnimationTween.fromRight(c),
                   child: Image.asset(
-                    pageRes['layer4'],
-                    fit: BoxFit.contain,
-                    width: width,
+                    pageRes['layer5'],
+                    fit: BoxFit.fill,
                   ),
                 ),
               ),
               Container(
-                child: AnimatedBuilder(
-                  animation: zoomInAnimate,
-                  builder: (context, widget) {
-                    return SvgPicture.asset(
-                      pageRes['layer5'],
-                      fit: BoxFit.contain,
-                      width: zoomInAnimate.value,
-                      height: zoomInAnimate.value,
-                    );
-                  },
-                ),
-              ),
-              Container(
                 child: SlideTransition(
-                  position: AnimationTween.fromBottom(c),
+                  position: AnimationTween.fromTop(c),
                   child: Column(
                     children: [
                       Divider(
@@ -125,7 +104,14 @@ class _EFFICACYState extends State<EFFICACY> with TickerProviderStateMixin {
             ],
           ),
         ),
-      ),
+
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    c.dispose();
+    zoomC.dispose();
   }
 }
