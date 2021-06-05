@@ -42,7 +42,7 @@ class _WhatIsZelesseLandScabeState extends State<WhatIsZelesseLandScabe>
     return Container(
       width: width,
       height: height,
-      margin: EdgeInsets.all(30),
+      margin: EdgeInsets.all(20),
       color: AppStyleConfig.appColors['backgrounLight'],
       child: Builder(
         builder: (context) => ListView(

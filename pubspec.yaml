@@ -35,6 +35,10 @@ flutter:
   assets:
     - assets/data/sample.json
     - assets/images/
+    - assets/images/icons/
+    - assets/images/tablet/home_page/
+    - assets/images/tablet/discomfort/
+    - assets/images/tablet/usageTips/
 
 
   fonts:

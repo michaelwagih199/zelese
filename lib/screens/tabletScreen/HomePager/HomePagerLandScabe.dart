@@ -10,24 +10,22 @@ class HomePagerLandScabe extends StatefulWidget {
   _HomePagerLandScabeState createState() => _HomePagerLandScabeState();
 }
 
-class _HomePagerLandScabeState extends State<HomePagerLandScabe> with TickerProviderStateMixin {
-  AnimationController c, zoomC;
-  Animation zoomInAnimate;
+class _HomePagerLandScabeState extends State<HomePagerLandScabe>
+    with TickerProviderStateMixin {
+  AnimationController c;
 
   var pageRes = <String, String>{
-    'layer1': 'assets/images/homePagelayer1.svg',
+    'layer1': 'assets/images/tablet/home_page/homePagelayer1.png',
     'layer2': 'assets/images/homePagelayer2.png',
     'layer3': 'assets/images/homePagelayer3.png',
-    'layer4': 'assets/images/homeVector.png',
+    'layer4': 'assets/images/tablet/home_page/homeVector.png',
   };
 
   @override
   void initState() {
     super.initState();
-    zoomC = AnimationController(vsync: this, duration: Duration(seconds: 1));
-    zoomInAnimate = Tween<double>(begin: 0.0, end: 300.0).animate(zoomC);
     c = AnimationController(duration: const Duration(seconds: 2), vsync: this)
-      ..forward().whenComplete(() => {zoomC..forward(), c.resync(this)});
+      ..forward().whenComplete(() => { c.resync(this)});
   }
 
   @override
@@ -42,34 +40,33 @@ class _HomePagerLandScabeState extends State<HomePagerLandScabe> with TickerProv
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Expanded(
+            flex: 8,
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Expanded(
-                  flex: 1,
+                  flex: 2,
                   child: SlideTransition(
                     position: AnimationTween.fromRight(c),
-                    child: SvgPicture.asset(
+                    child: Image.asset(
                       pageRes['layer1'],
+                      fit: BoxFit.scaleDown,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 6,
+                  child: SlideTransition(
+                    position: AnimationTween.fromBottom(c),
+                    child: Image.asset(
+                      pageRes['layer4'],
                       fit: BoxFit.contain,
                     ),
                   ),
                 ),
-
                 Expanded(
-                  flex: 3,
-                  child: Container(
-                    child: SlideTransition(
-                      position: AnimationTween.fromBottom(c),
-                      child: Image.asset(
-                        pageRes['layer4'],
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                  ),
-                ),
-
-                Expanded(
-                  flex: 1,
+                  flex: 2,
                   child: SlideTransition(
                     position: AnimationTween.fromLeft(c),
                     child: Image.asset(
@@ -81,21 +78,22 @@ class _HomePagerLandScabeState extends State<HomePagerLandScabe> with TickerProv
               ],
             ),
           ),
-           Container(
+          Expanded(
+            flex: 2,
+            child: Container(
               child: SlideTransition(
                 position: AnimationTween.fromRight(c),
                 child: Image.asset(
                   pageRes['layer3'],
-                  fit: BoxFit.fill,
+                  fit: BoxFit.scaleDown,
                 ),
               ),
             ),
-
+          ),
         ],
       ),
     );
   }
-
 
   @override
   void dispose() {

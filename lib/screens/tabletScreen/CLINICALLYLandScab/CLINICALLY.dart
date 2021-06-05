@@ -27,12 +27,13 @@ class _CLINICALLYLandScabeState extends State<CLINICALLYLandScabe> with TickerPr
   @override
   Widget build(BuildContext context) {
     var pageRes = <String, String>{
-      'layer1': 'assets/images/clinicalLayer1.png',
-      'layer2': 'assets/images/clinicalLayer2.png',
-      'layer3': 'assets/images/clinicalLayer3.png',
-      'layer4': 'assets/images/clinicalLayer4.png',
-      'layer5': 'assets/images/clinicalLayer5.png',
-      'layer6': 'assets/images/clinicalLayer6.png',
+      'layer1': 'assets/images/clinacilityLandLayer1.png',
+      'layer2': 'assets/images/clinacilityLandLayer2.png',
+      'layer3': 'assets/images/clinacilityLandLayer3.png',
+      'layer4': 'assets/images/clinacilityLandLayer4.png',
+      'layer5': 'assets/images/clinacilityLandLayer5.png',
+      'layer6': 'assets/images/clinacilityLandLayer6.png',
+      'layer7': 'assets/images/clinacilityLandLayerm7.png',
     };
 
     double width = MediaQuery.of(context).size.width;
@@ -41,7 +42,7 @@ class _CLINICALLYLandScabeState extends State<CLINICALLYLandScabe> with TickerPr
     return Container(
       width: width,
       height: height,
-      margin: EdgeInsets.all(15),
+      margin: EdgeInsets.all(30),
       color: AppStyleConfig.appColors['backgrounLight'],
       child: Builder(
         builder: (context) => ListView(
@@ -65,7 +66,7 @@ class _CLINICALLYLandScabeState extends State<CLINICALLYLandScabe> with TickerPr
                     position: AnimationTween.fromLeft(c),
                     child: Image.asset(
                       pageRes['layer2'],
-                      fit: BoxFit.fill,
+                      fit: BoxFit.scaleDown,
                       width: width,
                     ),
                   ),
@@ -76,7 +77,7 @@ class _CLINICALLYLandScabeState extends State<CLINICALLYLandScabe> with TickerPr
                     position: AnimationTween.fromTop(c),
                     child: Image.asset(
                       pageRes['layer3'],
-                      fit: BoxFit.fill,
+                      fit: BoxFit.scaleDown,
                       width: width,
                     ),
                   ),
@@ -87,7 +88,7 @@ class _CLINICALLYLandScabeState extends State<CLINICALLYLandScabe> with TickerPr
                     position: AnimationTween.fromLeft(c),
                     child: Image.asset(
                       pageRes['layer4'],
-                      fit: BoxFit.fill,
+                      fit: BoxFit.scaleDown,
                       width: width,
                     ),
                   ),
@@ -99,7 +100,7 @@ class _CLINICALLYLandScabeState extends State<CLINICALLYLandScabe> with TickerPr
                     position: AnimationTween.fromLeft(c),
                     child: Image.asset(
                       pageRes['layer5'],
-                      fit: BoxFit.fill,
+                      fit: BoxFit.scaleDown,
                       width: width,
                     ),
                   ),
@@ -114,7 +115,23 @@ class _CLINICALLYLandScabeState extends State<CLINICALLYLandScabe> with TickerPr
                         ),
                         Image.asset(
                           pageRes['layer6'],
-                          fit: BoxFit.fill,
+                          fit: BoxFit.scaleDown,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Container(
+                  child: SlideTransition(
+                    position: AnimationTween.fromBottom(c),
+                    child: Column(
+                      children: [
+                        Divider(
+                          color: AppStyleConfig.appColors['pink'],
+                        ),
+                        Image.asset(
+                          pageRes['layer7'],
+                          fit: BoxFit.scaleDown,
                         ),
                       ],
                     ),

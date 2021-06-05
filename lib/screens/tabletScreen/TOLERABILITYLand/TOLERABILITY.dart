@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:zelese/components/animations/animationsTween.dart';
 import 'package:zelese/theme/appStyleConfig.dart';
 
 class TOLERABILITYLandScab extends StatefulWidget {
   TOLERABILITYLandScab({Key key}) : super(key: key);
-
   @override
   _TOLERABILITYLandScabState createState() => _TOLERABILITYLandScabState();
 }
@@ -53,17 +51,19 @@ class _TOLERABILITYLandScabState extends State<TOLERABILITYLandScab>
                     position: AnimationTween.fromRight(c),
                     child: Image.asset(
                       pageRes['layer1'],
-                      fit: BoxFit.contain,
+                      fit: BoxFit.scaleDown,
                     ),
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(top: 30),
-                  child: SlideTransition(
-                    position: AnimationTween.fromLeft(c),
-                    child: Image.asset(
-                      pageRes['layer2'],
-                      fit: BoxFit.scaleDown,
+                Center(
+                  child: Container(
+                    margin: EdgeInsets.only(top: 30),
+                    child: SlideTransition(
+                      position: AnimationTween.fromLeft(c),
+                      child: Image.asset(
+                        pageRes['layer2'],
+                        fit: BoxFit.scaleDown,
+                      ),
                     ),
                   ),
                 ),
@@ -89,16 +89,13 @@ class _TOLERABILITYLandScabState extends State<TOLERABILITYLandScab>
                 ),
                 Container(
                   margin: EdgeInsets.only(top: 30),
-
                   child: SlideTransition(
                     position: AnimationTween.fromBottom(c),
                     child: Column(
                       children: [
-                        Divider(
-                          color: AppStyleConfig.appColors['pink'],
-                        ),
                         Image.asset(
                           pageRes['layer5'],
+                          fit: BoxFit.scaleDown,
                         ),
                       ],
                     ),

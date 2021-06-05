@@ -26,7 +26,7 @@ class CustomAppBarButton extends StatelessWidget {
         child: Text(
           btnText,
           style: TextStyle(
-              fontSize: fontSize, fontFamily: fontFamily, color: fontColor),
+              fontSize: fontSize, fontFamily: fontFamily, color: fontColor,fontWeight: FontWeight.bold),
         ),
         onPressed: callback,
       ),

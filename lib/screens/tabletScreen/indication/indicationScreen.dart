@@ -14,23 +14,13 @@ class IndicationLandScabeScreen extends StatefulWidget {
 
 class _IndicationLandScabeScreenState extends State<IndicationLandScabeScreen>
     with TickerProviderStateMixin {
-  AnimationController _controller, c2, c3;
-  Animation heartbeatAnimation;
+  AnimationController c;
 
   @override
   void initState() {
     super.initState();
-    c2 = AnimationController(duration: const Duration(seconds: 2), vsync: this)
-      ..forward().whenComplete(() => c3..forward());
-
-    c3 =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 200));
-    heartbeatAnimation = Tween<double>(begin: 0.0, end: 300.0).animate(c3);
-
-    _controller = AnimationController(
-      duration: const Duration(seconds: 2),
-      vsync: this,
-    )..forward().whenComplete(() => {});
+    c = AnimationController(duration: const Duration(seconds: 2), vsync: this)
+      ..forward().whenComplete(() => {c.resync(this)});
   }
 
   var pageRes = <String, String>{
@@ -50,45 +40,35 @@ class _IndicationLandScabeScreenState extends State<IndicationLandScabeScreen>
       height: height,
       color: AppStyleConfig.appColors['backgrounLight'],
       child: Builder(
-        builder: (context) => ListView(
-          children: [
+        builder: (context) => Container(
+          child:
             Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
                   child: SlideTransition(
-                    position: AnimationTween.fromTop(_controller),
+                    position: AnimationTween.fromLeft(c),
                     child: Image.asset(
                       pageRes['layer1'],
-                      fit: BoxFit.contain,
+                      fit: BoxFit.scaleDown,
                     ),
                   ),
                 ),
                 Container(
                   margin: EdgeInsets.fromLTRB(10, 30, 10, 0),
                   child: SlideTransition(
-                    position: AnimationTween.fromTop(_controller),
+                    position: AnimationTween.fromTop(c),
                     child: Image.asset(
                       pageRes['layer2'],
-                      fit: BoxFit.contain,
+                      fit: BoxFit.scaleDown,
                     ),
                   ),
                 ),
                 Container(
                   margin: EdgeInsets.fromLTRB(10, 30, 10, 0),
-
                   child: SlideTransition(
-                    position: AnimationTween.fromTop(_controller),
-                    child: Image.asset(
-                      pageRes['layer3'],
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                ),
-                Container(
-                  child: SlideTransition(
-                    position: AnimationTween.fromBottom(_controller),
+                    position: AnimationTween.fromRight(c),
                     child: Image.asset(
                       pageRes['layer4'],
                       fit: BoxFit.scaleDown,
@@ -97,7 +77,7 @@ class _IndicationLandScabeScreenState extends State<IndicationLandScabeScreen>
                 ),
               ],
             ),
-          ],
+
         ),
       ),
     );
@@ -106,8 +86,6 @@ class _IndicationLandScabeScreenState extends State<IndicationLandScabeScreen>
   @override
   void dispose() {
     super.dispose();
-    _controller.dispose();
-    c2.dispose();
-    c3.dispose();
+    c.dispose();
   }
 }

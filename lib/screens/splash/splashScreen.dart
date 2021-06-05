@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:zelese/components/animations/animationsTween.dart';
+import 'package:zelese/components/utilities/fractilySize.dart';
 import 'package:zelese/theme/appStyleConfig.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -58,7 +59,7 @@ class _SplashScreenState extends State<SplashScreen>
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisSize: MainAxisSize.max,
           children: [
-            Expanded(
+            Flexible(
               flex: 1,
               child: Container(
                 child: SlideTransition(
@@ -70,7 +71,7 @@ class _SplashScreenState extends State<SplashScreen>
                 ),
               ),
             ),
-            Expanded(
+            Flexible(
               flex: 1,
               child: SlideTransition(
                 position: AnimationTween.fromRight(c),
@@ -78,7 +79,7 @@ class _SplashScreenState extends State<SplashScreen>
                   child: Text(
                     '‫‪MY‬‬ ‫‪COMFORT‬‬ ‫‪PARTNER‬‬',
                     style: TextStyle(
-                        fontSize: 40,
+                        fontSize: 25,
                         fontFamily: 'Roboto',
                         color: AppStyleConfig.appColors['pink']),
                   ),
@@ -86,7 +87,7 @@ class _SplashScreenState extends State<SplashScreen>
               ),
             ),
             Expanded(
-              flex: 3,
+              flex: 6,
               child: Container(
                 child: SlideTransition(
                   position: AnimationTween.fromTop(c),
@@ -97,11 +98,12 @@ class _SplashScreenState extends State<SplashScreen>
                 ),
               ),
             ),
-            Expanded(
+            Flexible(
               flex: 1,
               child: Align(
                 alignment: Alignment.centerRight,
                 child: Container(
+                  margin: EdgeInsets.all(10),
                   child: SlideTransition(
                     position: AnimationTween.fromRight(c),
                     child: Image.asset('assets/images/logoCompany1.png',
@@ -111,7 +113,6 @@ class _SplashScreenState extends State<SplashScreen>
               ),
             ),
           ],
-
         ),
       ),
     );
