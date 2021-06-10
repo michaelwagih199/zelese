@@ -73,15 +73,13 @@ class _SplashScreenState extends State<SplashScreen>
             ),
             Flexible(
               flex: 1,
-              child: SlideTransition(
-                position: AnimationTween.fromRight(c),
-                child: Center(
-                  child: Text(
-                    '‫‪MY‬‬ ‫‪COMFORT‬‬ ‫‪PARTNER‬‬',
-                    style: TextStyle(
-                        fontSize: 25,
-                        fontFamily: 'Roboto',
-                        color: AppStyleConfig.appColors['pink']),
+              child: Container(
+                margin: EdgeInsets.all(20),
+                child: SlideTransition(
+                  position: AnimationTween.fromLeft(c),
+                  child: Image.asset(
+                    'assets/images/splashTxt.png',
+                    fit: BoxFit.scaleDown,
                   ),
                 ),
               ),

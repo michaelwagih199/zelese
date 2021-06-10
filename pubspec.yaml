@@ -39,6 +39,10 @@ flutter:
     - assets/images/tablet/home_page/
     - assets/images/tablet/discomfort/
     - assets/images/tablet/usageTips/
+    - assets/images/tablet/zselese/
+    - assets/images/tablet/efficacy/
+    - assets/images/tablet/clinicality/
+    - assets/images/tablet/tolarability/
 
 
   fonts:

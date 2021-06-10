@@ -30,7 +30,6 @@ class _UsageTipsState extends State<UsageTips> with TickerProviderStateMixin {
     double height = MediaQuery.of(context).size.height;
 
     return Container(
-      margin: EdgeInsets.all(30),
       color: AppStyleConfig.appColors['backgrounLight'],
         child: Column(
           children: [
@@ -39,7 +38,6 @@ class _UsageTipsState extends State<UsageTips> with TickerProviderStateMixin {
                 children: [
                   Expanded(
                     child: Container(
-                      margin: EdgeInsets.only(left: 20),
                       child: SlideTransition(
                         position: AnimationTween.fromRight(c),
                         child: Image.asset(
@@ -80,9 +78,11 @@ class _UsageTipsState extends State<UsageTips> with TickerProviderStateMixin {
                               ),
                             ],
                           ),
+
                         ),
                         Flexible(
                           child: Container(
+                            margin: EdgeInsets.only(left: 20),
                             child: SlideTransition(
                               position: AnimationTween.fromTop(c),
                               child: Image.asset(

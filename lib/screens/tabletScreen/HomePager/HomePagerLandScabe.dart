@@ -16,8 +16,8 @@ class _HomePagerLandScabeState extends State<HomePagerLandScabe>
 
   var pageRes = <String, String>{
     'layer1': 'assets/images/tablet/home_page/homePagelayer1.png',
-    'layer2': 'assets/images/homePagelayer2.png',
-    'layer3': 'assets/images/homePagelayer3.png',
+    'layer2': 'assets/images/tablet/home_page/l2.png',
+    'layer3': 'assets/images/tablet/home_page/l3.png',
     'layer4': 'assets/images/tablet/home_page/homeVector.png',
   };
 
@@ -34,7 +34,6 @@ class _HomePagerLandScabeState extends State<HomePagerLandScabe>
     double height = MediaQuery.of(context).size.height;
 
     return Container(
-      margin: EdgeInsets.all(10),
       color: AppStyleConfig.appColors['backgrounLight'],
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -51,7 +50,7 @@ class _HomePagerLandScabeState extends State<HomePagerLandScabe>
                     position: AnimationTween.fromRight(c),
                     child: Image.asset(
                       pageRes['layer1'],
-                      fit: BoxFit.scaleDown,
+                      fit: BoxFit.contain,
                     ),
                   ),
                 ),

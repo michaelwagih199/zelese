@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:zelese/components/utilities/appBarButton.dart';
 import 'package:zelese/components/utilities/aspect_ratio.dart';
@@ -109,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
             if (width < 600) {
               return phoneColumn(_list, drawers);
             } else {
-              return tabletColumn(_listLandScape, drawers);
+              return tabletColumn(_listLandScape, drawers, width, height);
             }
           },
         ),
@@ -278,7 +279,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Image.asset(drawers['drawerNew'], fit: BoxFit.cover),
                 ),
               ),
-
               GestureDetector(
                 onTap: () {
                   setState(() {
@@ -291,7 +291,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Image.asset(drawers['drawer6'], fit: BoxFit.cover),
                 ),
               ),
-
               GestureDetector(
                 onTap: () {
                   setState(() {
@@ -352,7 +351,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Image.asset(drawers['drawer4'], fit: BoxFit.cover),
                 ),
               ),
-
               GestureDetector(
                 onTap: () {
                   setState(() {
@@ -365,7 +363,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Image.asset(drawers['drawer7'], fit: BoxFit.cover),
                 ),
               ),
-
             ],
           ),
         ),
@@ -373,8 +370,8 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Column tabletColumn(
-      List<Widget> _listLandScape, Map<String, String> drawers) {
+  Column tabletColumn(List<Widget> _listLandScape, Map<String, String> drawers,
+      double width, double height) {
     return Column(
       children: [
         Expanded(
@@ -389,15 +386,14 @@ class _HomeScreenState extends State<HomeScreen> {
               boxShadow: [
                 BoxShadow(
                   color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 1,
-                  blurRadius: 2,
+                  spreadRadius: 2,
+                  blurRadius: 3,
                   offset: Offset(0, 2), // changes position of shadow
                 ),
               ],
             ),
-            height: 60,
             child: Container(
-              margin: EdgeInsets.all(10),
+              margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -407,92 +403,109 @@ class _HomeScreenState extends State<HomeScreen> {
                         pageController.jumpTo(0);
                       },
                       child: Container(
-                        margin: EdgeInsets.all(10),
-                        child: Image.asset('assets/images/logo.png',
-                            width: 150, height: 80, fit: BoxFit.scaleDown),
+                        margin: EdgeInsets.only(right: 5),
+                        child: Image.asset('assets/images/logoHome.png',
+                            fit: BoxFit.scaleDown),
                       ),
                     ),
                   ),
+                  Expanded(
+                    child: Container(
+                      margin: EdgeInsets.all(10),
+                      child: CustomAppBarButton(
+                          'The Discomfort',
+                          18,
+                          'Roboto',
+                          AppStyleConfig.appColors['lima'],
+                          disComfortDecoration(), () {
+                        pageController.jumpToPage(1);
+                        resetColors();
+                        disComfortColor = AppStyleConfig.appColors['orgwany'];
+                      }),
+                    ),
+                  ),
+                  CustomVerticalDevider(),
+                  Expanded(
+                    child: Container(
+                      margin: EdgeInsets.all(10),
+                      child: CustomAppBarButton(
+                          'ZELESSE',
+                          16,
+                          'Roboto',
+                          AppStyleConfig.appColors['lima'],
+                          ZELESSEDecoration(), () {
+                        pageController.jumpToPage(2);
+                        resetColors();
+                        zeleseColor = AppStyleConfig.appColors['orgwany'];
+                      }),
+                    ),
+                  ),
+                  CustomVerticalDevider(),
+                  Expanded(
+                    child: Container(
+                      margin: EdgeInsets.all(10),
+                      child: CustomAppBarButton(
+                          'INDICATIONS',
+                          16,
+                          'Roboto',
+                          AppStyleConfig.appColors['lima'],
+                          INDICATIONSDecoration(), () {
+                        pageController.jumpToPage(3);
+                        resetColors();
+                        indicationColor = AppStyleConfig.appColors['orgwany'];
+                      }),
+                    ),
+                  ),
+                  CustomVerticalDevider(),
+                  Expanded(
+                    child: Container(
+                      margin: EdgeInsets.all(10),
+                      child: CustomAppBarButton(
+                          'EFFICACY',
+                          16,
+                          'Roboto',
+                          AppStyleConfig.appColors['lima'],
+                          EFFICACYDecoration(), () {
+                        pageController.jumpToPage(4);
 
-                  Expanded(
-                    child: CustomAppBarButton(
-                        'The DisComfort',
-                        18,
-                        'Roboto',
-                        AppStyleConfig.appColors['lima'],
-                        disComfortDecoration(), () {
-                      pageController.jumpToPage(1);
-                      resetColors();
-                      disComfortColor = AppStyleConfig.appColors['orgwany'];
-                    }),
+                        resetColors();
+                        efficacyColor = AppStyleConfig.appColors['orgwany'];
+                      }),
+                    ),
                   ),
                   CustomVerticalDevider(),
                   Expanded(
-                    child: CustomAppBarButton(
-                        'ZELESSE',
-                        16,
-                        'Roboto',
-                        AppStyleConfig.appColors['lima'],
-                        ZELESSEDecoration(), () {
-                      pageController.jumpToPage(2);
-                      resetColors();
-                      zeleseColor = AppStyleConfig.appColors['orgwany'];
-                    }),
-                  ),
-                  CustomVerticalDevider(),
-                  Expanded(
-                    child: CustomAppBarButton(
-                        'INDICATIONS',
-                        16,
-                        'Roboto',
-                        AppStyleConfig.appColors['lima'],
-                        INDICATIONSDecoration(), () {
-                      pageController.jumpToPage(3);
-                      resetColors();
-                      indicationColor = AppStyleConfig.appColors['orgwany'];
-                    }),
-                  ),
-                  CustomVerticalDevider(),
-                  Expanded(
-                    child: CustomAppBarButton(
-                        'EFFICACY',
-                        16,
-                        'Roboto',
-                        AppStyleConfig.appColors['lima'],
-                        EFFICACYDecoration(), () {
-                      pageController.jumpToPage(4);
+                    child: Container(
+                      margin: EdgeInsets.all(10),
+                      child: CustomAppBarButton(
+                          'CLINICALLY EFFICACY',
+                          12,
+                          'Roboto',
+                          AppStyleConfig.appColors['lima'],
+                          CLINICALLYDecoration(), () {
+                        pageController.jumpToPage(5);
 
-                      resetColors();
-                      efficacyColor = AppStyleConfig.appColors['orgwany'];
-                    }),
+                        resetColors();
+                        CLINICALLYColor = AppStyleConfig.appColors['orgwany'];
+                      }),
+                    ),
                   ),
                   CustomVerticalDevider(),
                   Expanded(
-                    child: CustomAppBarButton(
-                        'CLINICALLY EFFICACY',
-                        15,
-                        'Roboto',
-                        AppStyleConfig.appColors['lima'],
-                        CLINICALLYDecoration(), () {
-                      pageController.jumpToPage(5);
+                    child: Container(
+                      margin: EdgeInsets.all(10),
+                      child: CustomAppBarButton(
+                          'TOLERABILITY',
+                          16,
+                          'Roboto',
+                          AppStyleConfig.appColors['lima'],
+                          TOLERABILITYDecoration(), () {
+                        pageController.jumpToPage(6);
 
-                      resetColors();
-                      CLINICALLYColor = AppStyleConfig.appColors['orgwany'];
-                    }),
-                  ),
-                  CustomVerticalDevider(),
-                  Expanded(
-                    child: CustomAppBarButton(
-                        'TOLERABILITY',
-                        16,
-                        'Roboto',
-                        AppStyleConfig.appColors['lima'],
-                        TOLERABILITYDecoration(), () {
-                      pageController.jumpToPage(6);
-
-                      resetColors();
-                      tolarabilityColor = AppStyleConfig.appColors['orgwany'];
-                    }),
+                        resetColors();
+                        tolarabilityColor = AppStyleConfig.appColors['orgwany'];
+                      }),
+                    ),
                   ),
                 ],
               ),
@@ -502,6 +515,7 @@ class _HomeScreenState extends State<HomeScreen> {
         Expanded(
           flex: 8,
           child: Container(
+            margin: EdgeInsets.fromLTRB(30,15, 30, 15),
             child: Stack(children: [
               PageView(
                 children: _listLandScape,
@@ -554,8 +568,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       case 7:
                         {
                           resetColors();
-                          usageTibsColors =
-                          AppStyleConfig.appColors['lima'];
+                          usageTibsColors = AppStyleConfig.appColors['lima'];
                         }
                         break;
 
@@ -572,100 +585,97 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         alignDrawer(drawers),
-        bottomBar(),
+        Expanded(flex: 1, child: bottomBar())
       ],
     );
   }
 
-  Expanded bottomBar() {
-    return Expanded(
-      flex: 1,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(15),
-            topRight: Radius.circular(15),
-          ),
-          color: AppStyleConfig.appColors['primary'],
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 1,
-              blurRadius: 2,
-              offset: Offset(0, 2), // changes position of shadow
-            ),
-          ],
+  bottomBar() {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(15),
+          topRight: Radius.circular(15),
         ),
-        child: Container(
-          margin: EdgeInsets.fromLTRB(15, 0, 15, 0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              FractionallySizedWidget(
-                widthFactor: 0.6,
-                widget: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    IconButton(
+        color: AppStyleConfig.appColors['primary'],
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 1,
+            blurRadius: 2,
+            offset: Offset(0, 2), // changes position of shadow
+          ),
+        ],
+      ),
+      child: Container(
+        margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+        child: Row(
+          children: [
+            Flexible(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  IconButton(
+                    icon: SvgPicture.asset(
+                      'assets/images/icons/arrowBack.svg',
+                    ),
+                    onPressed: previousPage,
+                  ),
+                  CustomVerticalColor(
+                    color: AppStyleConfig.appColors['orgwany'],
+                    height: 40,
+                  ),
+                  IconButton(
                       icon: SvgPicture.asset(
-                        'assets/images/icons/arrowBack.svg',
+                        'assets/images/icons/homeIcon.svg',
                       ),
-                      onPressed: previousPage,
-                    ),
-                    CustomVerticalColor(
-                      color: AppStyleConfig.appColors['orgwany'],
-                      height: 40,
-                    ),
-                    IconButton(
-                        icon: SvgPicture.asset(
-                          'assets/images/icons/homeIcon.svg',
-                        ),
-                        onPressed: () {
-                          pageController.jumpToPage(0);
-                        }),
-                    CustomVerticalColor(
-                      color: AppStyleConfig.appColors['orgwany'],
-                      height: 40,
-                    ),
-                    IconButton(
+                      onPressed: () {
+                        pageController.jumpToPage(0);
+                      }),
+                  CustomVerticalColor(
+                    color: AppStyleConfig.appColors['orgwany'],
+                    height: 40,
+                  ),
+                  IconButton(
+                    icon: SvgPicture.asset(
+                        'assets/images/icons/dashBoeardIcon.svg'),
+                    onPressed: showDrawer,
+                  ),
+                  CustomVerticalColor(
+                    color: AppStyleConfig.appColors['orgwany'],
+                    height: 40,
+                  ),
+                  IconButton(
                       icon: SvgPicture.asset(
-                          'assets/images/icons/dashBoeardIcon.svg'),
-                      onPressed: showDrawer,
-                    ),
-                    CustomVerticalColor(
-                      color: AppStyleConfig.appColors['orgwany'],
-                      height: 40,
-                    ),
-                    IconButton(
-                        icon: SvgPicture.asset(
-                            'assets/images/icons/nextArrowIcon.svg'),
-                        onPressed: nextPage),
-                  ],
-                ),
+                          'assets/images/icons/nextArrowIcon.svg'),
+                      onPressed: nextPage),
+                ],
               ),
-              FractionallySizedWidget(
-                widthFactor: 0.5,
-                widget: Container(
-                  child: CustomAppBarButton('Usage Tips', 18, 'Roboto',
-                      usageTibsColors, usageTibsDecoration(), () {
-                    setState(() {
-                      pageController.jumpToPage(7);
-                      _isMenuVisable = false;
-                      resetColors();
-                      usageTibsColors = AppStyleConfig.appColors['lima'];
-                    });
-                  }),
-                ),
+            ),
+            Expanded(
+              child: Container(
+                margin: EdgeInsets.fromLTRB(50, 0, 50, 0),
+                child: CustomAppBarButton('Usage Tips', 18, 'Roboto',
+                    usageTibsColors, usageTibsDecoration(), () {
+                  setState(() {
+                    pageController.jumpToPage(7);
+                    _isMenuVisable = false;
+                    resetColors();
+                    usageTibsColors = AppStyleConfig.appColors['lima'];
+                  });
+                }),
               ),
-              FractionallySizedWidget(
-                widthFactor: 0.5,
-                widget: Container(
-                  child: Image.asset('assets/images/companyLogo.png',
+            ),
+            Flexible(
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Container(
+                  child: Image.asset('assets/images/logoCompany1.png',
                       fit: BoxFit.scaleDown),
                 ),
-              )
-            ],
-          ),
+              ),
+            )
+          ],
         ),
       ),
     );
@@ -695,7 +705,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return BoxDecoration(
       color: zeleseColor,
       borderRadius: BorderRadius.all(
-          Radius.circular(3.0) //                 <--- border radius here
+          Radius.circular(10) //                 <--- border radius here
           ),
     );
   }
@@ -704,7 +714,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return BoxDecoration(
       color: disComfortColor,
       borderRadius: BorderRadius.all(
-          Radius.circular(3.0) //                 <--- border radius here
+          Radius.circular(10) //                 <--- border radius here
           ),
     );
   }
@@ -722,7 +732,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return BoxDecoration(
       color: tolarabilityColor,
       borderRadius: BorderRadius.all(
-          Radius.circular(3.0) //                 <--- border radius here
+          Radius.circular(10) //                 <--- border radius here
           ),
     );
   }
@@ -731,7 +741,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return BoxDecoration(
       color: CLINICALLYColor,
       borderRadius: BorderRadius.all(
-          Radius.circular(3.0) //                 <--- border radius here
+          Radius.circular(10) //                 <--- border radius here
           ),
     );
   }
@@ -740,7 +750,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return BoxDecoration(
       color: efficacyColor,
       borderRadius: BorderRadius.all(
-          Radius.circular(3.0) //                 <--- border radius here
+          Radius.circular(10) //                 <--- border radius here
           ),
     );
   }
@@ -749,7 +759,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return BoxDecoration(
       color: indicationColor,
       borderRadius: BorderRadius.all(
-          Radius.circular(3.0) //                 <--- border radius here
+          Radius.circular(10) //                 <--- border radius here
           ),
     );
   }

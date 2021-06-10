@@ -28,12 +28,13 @@ class _WhatIsZelesseLandScabeState extends State<WhatIsZelesseLandScabe>
   @override
   Widget build(BuildContext context) {
     var pageRes = <String, String>{
-      'layer1': 'assets/images/whatZelesLandLayer1.png',
-      'layer2': 'assets/images/whatZelesLandLayer2.png',
-      'layer3': 'assets/images/whatZelesLandLayer3.png',
-      'layer4': 'assets/images/whatZelesLandLayer4.png',
-      'layer5': 'assets/images/whatZelesLandLayer5.png',
-      'layer6': 'assets/images/whatZelesLandLayer6.png',
+      'bg': 'assets/images/tablet/zselese/bg.png',
+      'layer1': 'assets/images/tablet/zselese/layuer1.png',
+      'layer2': 'assets/images/tablet/zselese/layer2.png',
+      'layer3': 'assets/images/tablet/zselese/layer3.png',
+      'layer4': 'assets/images/tablet/zselese/layer4.png',
+      'layer5': 'assets/images/tablet/zselese/layer5.png',
+      'layer6': 'assets/images/tablet/zselese/layer6.png',
     };
 
     double width = MediaQuery.of(context).size.width;
@@ -42,7 +43,6 @@ class _WhatIsZelesseLandScabeState extends State<WhatIsZelesseLandScabe>
     return Container(
       width: width,
       height: height,
-      margin: EdgeInsets.all(20),
       color: AppStyleConfig.appColors['backgrounLight'],
       child: Builder(
         builder: (context) => ListView(
@@ -73,7 +73,7 @@ class _WhatIsZelesseLandScabeState extends State<WhatIsZelesseLandScabe>
                 Container(
                   margin: EdgeInsets.only(top: 20),
                   child: SlideTransition(
-                    position: AnimationTween.fromBottom(c),
+                    position: AnimationTween.fromLeft(c),
                     child: Image.asset(
                       pageRes['layer3'],
                       fit: BoxFit.scaleDown,
@@ -92,27 +92,22 @@ class _WhatIsZelesseLandScabeState extends State<WhatIsZelesseLandScabe>
                 ),
                 Container(
                   margin: EdgeInsets.only(top: 20),
+                  width: width,
                   child: SlideTransition(
                     position: AnimationTween.fromLeft(c),
                     child: Image.asset(
                       pageRes['layer5'],
-                      fit: BoxFit.scaleDown,
+                      fit: BoxFit.contain,
                     ),
                   ),
                 ),
                 Container(
+                  margin: EdgeInsets.only(top: 20),
                   child: SlideTransition(
                     position: AnimationTween.fromBottom(c),
-                    child: Column(
-                      children: [
-                        Divider(
-                          color: AppStyleConfig.appColors['pink'],
-                        ),
-                        Image.asset(
-                          pageRes['layer6'],
-                          fit: BoxFit.scaleDown,
-                        ),
-                      ],
+                    child: Image.asset(
+                      pageRes['layer6'],
+                      fit: BoxFit.scaleDown,
                     ),
                   ),
                 ),

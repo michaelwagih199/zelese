@@ -13,25 +13,24 @@ class EFFICACYLandScabe extends StatefulWidget {
 
 class _EFFICACYLandScabeState extends State<EFFICACYLandScabe>
     with TickerProviderStateMixin {
-  AnimationController c, zoomC;
-  Animation zoomInAnimate;
+  AnimationController c;
 
   @override
   void initState() {
     super.initState();
-    zoomC = AnimationController(vsync: this, duration: Duration(seconds: 1));
-    zoomInAnimate = Tween<double>(begin: 0.0, end: 300.0).animate(zoomC);
+
     c = AnimationController(duration: const Duration(seconds: 2), vsync: this)
-      ..forward().whenComplete(() => {zoomC..forward(), c.resync(this)});
+      ..forward().whenComplete(() => {c.resync(this)});
   }
 
   @override
   Widget build(BuildContext context) {
     var pageRes = <String, String>{
-      'layer1': 'assets/images/EFFICACYLandLayer1.png',
-      'layer2': 'assets/images/EFFICACYLandLayer2.png',
-      'layer3': 'assets/images/EFFICACYLandLayer3.png',
-      'layer4': 'assets/images/EFFICACYLandLayer4.png',
+      'layer1': 'assets/images/tablet/efficacy/layer1.png',
+      'layer2': 'assets/images/tablet/efficacy/layer2.png',
+      'layer3': 'assets/images/tablet/efficacy/layer3.png',
+      'layer4': 'assets/images/tablet/efficacy/layer4.png',
+      'layer5': 'assets/images/tablet/efficacy/layer5.png',
     };
 
     double width = MediaQuery.of(context).size.width;
@@ -40,11 +39,12 @@ class _EFFICACYLandScabeState extends State<EFFICACYLandScabe>
     return Builder(
       builder: (context) => ListView(
         children: [
-          Container(
-            margin: EdgeInsets.fromLTRB(30, 20, 30, 20),
-            child: Column(
-              children: [
-                Container(
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                child: Container(
                   child: SlideTransition(
                     position: AnimationTween.fromTop(c),
                     child: Image.asset(
@@ -53,41 +53,60 @@ class _EFFICACYLandScabeState extends State<EFFICACYLandScabe>
                     ),
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(top: 20),
-                  child: SlideTransition(
-                    position: AnimationTween.fromRight(c),
-                    child: Image.asset(
-                      pageRes['layer2'],
-                      fit: BoxFit.scaleDown,
-                    ),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 15),
+                child: SlideTransition(
+                  position: AnimationTween.fromRight(c),
+                  child: Image.asset(
+                    pageRes['layer2'],
+                    fit: BoxFit.scaleDown,
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(top: 20),
-                  child: SlideTransition(
-                    position: AnimationTween.fromLeft(c),
-                    child: Image.asset(
-                      pageRes['layer3'],
-                      fit: BoxFit.scaleDown,
-                    ),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 15),
+
+                child: SlideTransition(
+                  position: AnimationTween.fromLeft(c),
+                  child: Image.asset(
+                    pageRes['layer3'],
+                    fit: BoxFit.scaleDown,
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(top: 20),
-                  child: SlideTransition(
-                    position: AnimationTween.fromRight(c),
-                    child: Image.asset(
-                      pageRes['layer4'],
-                      fit: BoxFit.scaleDown,
-                    ),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 10),
+                width: width,
+                child: SlideTransition(
+                  position: AnimationTween.fromRight(c),
+                  child: Image.asset(
+                    pageRes['layer4'],
+                    fit: BoxFit.contain,
                   ),
                 ),
-              ],
-            ),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 10),
+
+                child: SlideTransition(
+                  position: AnimationTween.fromLeft(c),
+                  child: Image.asset(
+                    pageRes['layer5'],
+                    fit: BoxFit.scaleDown,
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    c.dispose();
   }
 }

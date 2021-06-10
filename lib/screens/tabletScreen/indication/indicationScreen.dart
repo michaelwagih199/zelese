@@ -35,49 +35,49 @@ class _IndicationLandScabeScreenState extends State<IndicationLandScabeScreen>
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Container(
-      margin: EdgeInsets.all(40),
       width: width,
       height: height,
       color: AppStyleConfig.appColors['backgrounLight'],
       child: Builder(
         builder: (context) => Container(
-          child:
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  child: SlideTransition(
-                    position: AnimationTween.fromLeft(c),
-                    child: Image.asset(
-                      pageRes['layer1'],
-                      fit: BoxFit.scaleDown,
-                    ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Container(
+                child: SlideTransition(
+                  position: AnimationTween.fromLeft(c),
+                  child: Image.asset(
+                    pageRes['layer1'],
+                    fit: BoxFit.scaleDown,
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.fromLTRB(10, 30, 10, 0),
-                  child: SlideTransition(
-                    position: AnimationTween.fromTop(c),
-                    child: Image.asset(
-                      pageRes['layer2'],
-                      fit: BoxFit.scaleDown,
-                    ),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 40),
+                child: SlideTransition(
+                  position: AnimationTween.fromTop(c),
+                  child: Image.asset(
+                    pageRes['layer2'],
+                    fit: BoxFit.scaleDown,
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.fromLTRB(10, 30, 10, 0),
-                  child: SlideTransition(
-                    position: AnimationTween.fromRight(c),
-                    child: Image.asset(
-                      pageRes['layer4'],
-                      fit: BoxFit.scaleDown,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-
+              ),
+              // Align(
+              //   alignment: Alignment.bottomLeft,
+              //   child: Container(
+              //     child: SlideTransition(
+              //       position: AnimationTween.fromRight(c),
+              //       child: Image.asset(
+              //         pageRes['layer4'],
+              //         fit: BoxFit.scaleDown,
+              //       ),
+              //     ),
+              //   ),
+              // ),
+            ],
+          ),
         ),
       ),
     );

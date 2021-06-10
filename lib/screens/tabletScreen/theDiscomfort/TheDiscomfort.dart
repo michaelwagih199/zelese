@@ -10,10 +10,10 @@ class TheDiscomfort extends StatefulWidget {
 
 class _TheDiscomfortState extends State<TheDiscomfort>
     with TickerProviderStateMixin {
-
   AnimationController c;
 
   var pageRes = <String, String>{
+    'bg': 'assets/images/tablet/discomfort/bg.png',
     'layer1': 'assets/images/tablet/discomfort/layer1.png',
     'layer2': 'assets/images/tablet/discomfort/layer2.png',
     'layer3': 'assets/images/tablet/discomfort/layer3.png',
@@ -30,16 +30,22 @@ class _TheDiscomfortState extends State<TheDiscomfort>
 
   @override
   Widget build(BuildContext context) {
-
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
     return Container(
-      margin: EdgeInsets.all(10),
+      // decoration: BoxDecoration(
+      //   image: DecorationImage(
+      //     image: AssetImage(pageRes['bg']),
+      //     fit: BoxFit.cover,
+      //   ),
+      // ),
+      height: height,
       color: AppStyleConfig.appColors['backgrounLight'],
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.max,
         children: [
           Container(
             child: SlideTransition(
@@ -50,7 +56,6 @@ class _TheDiscomfortState extends State<TheDiscomfort>
               ),
             ),
           ),
-
           Container(
             child: SlideTransition(
               position: AnimationTween.fromRight(c),
@@ -60,7 +65,6 @@ class _TheDiscomfortState extends State<TheDiscomfort>
               ),
             ),
           ),
-
           Container(
             child: SlideTransition(
               position: AnimationTween.fromRight(c),
@@ -70,17 +74,18 @@ class _TheDiscomfortState extends State<TheDiscomfort>
               ),
             ),
           ),
-
           Container(
+            width: width,
             child: SlideTransition(
               position: AnimationTween.fromRight(c),
               child: Image.asset(
                 pageRes['layer4'],
-                fit: BoxFit.scaleDown,
+                fit: BoxFit.contain,
               ),
             ),
           ),
-          Container(
+          Align(
+            alignment: Alignment.bottomLeft,
             child: SlideTransition(
               position: AnimationTween.fromRight(c),
               child: Image.asset(

@@ -5,6 +5,7 @@ import 'package:zelese/theme/appStyleConfig.dart';
 
 class TOLERABILITYLandScab extends StatefulWidget {
   TOLERABILITYLandScab({Key key}) : super(key: key);
+
   @override
   _TOLERABILITYLandScabState createState() => _TOLERABILITYLandScabState();
 }
@@ -26,25 +27,25 @@ class _TOLERABILITYLandScabState extends State<TOLERABILITYLandScab>
   @override
   Widget build(BuildContext context) {
     var pageRes = <String, String>{
-      'layer1': 'assets/images/tolarabilityLandLayer1.png',
-      'layer2': 'assets/images/tolarabilityLandLayer2.png',
-      'layer3': 'assets/images/tolarabilityLandLayer3.png',
-      'layer4': 'assets/images/tolarabilityLandLayer4.png',
-      'layer5': 'assets/images/tolarabilityLandLayer5.png',
+      'layer1': 'assets/images/tablet/tolarability/layer1.png',
+      'layer2': 'assets/images/tablet/tolarability/layer2.png',
+      'layer3': 'assets/images/tablet/tolarability/layer3.png',
+      'layer4': 'assets/images/tablet/tolarability/layer4.png',
+      'layer5': 'assets/images/tablet/tolarability/layer5.png',
     };
 
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return Builder(
-      builder: (context) => Container(
-        width: width,
-        height: height,
-        margin: EdgeInsets.all(30),
-        child: ListView(
-          children: [
+    return Container(
+      width: width,
+      height: height,
+      color: AppStyleConfig.appColors['backgrounLight'],
+      child: Builder(
+        builder: (context) =>
             Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisSize: MainAxisSize.max,
               children: [
                 Container(
                   child: SlideTransition(
@@ -57,7 +58,6 @@ class _TOLERABILITYLandScabState extends State<TOLERABILITYLandScab>
                 ),
                 Center(
                   child: Container(
-                    margin: EdgeInsets.only(top: 30),
                     child: SlideTransition(
                       position: AnimationTween.fromLeft(c),
                       child: Image.asset(
@@ -68,7 +68,6 @@ class _TOLERABILITYLandScabState extends State<TOLERABILITYLandScab>
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: 30),
                   child: SlideTransition(
                     position: AnimationTween.fromTop(c),
                     child: Image.asset(
@@ -78,7 +77,6 @@ class _TOLERABILITYLandScabState extends State<TOLERABILITYLandScab>
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top:30),
                   child: SlideTransition(
                     position: AnimationTween.fromRight(c),
                     child: Image.asset(
@@ -87,23 +85,19 @@ class _TOLERABILITYLandScabState extends State<TOLERABILITYLandScab>
                     ),
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(top: 30),
-                  child: SlideTransition(
-                    position: AnimationTween.fromBottom(c),
-                    child: Column(
-                      children: [
-                        Image.asset(
-                          pageRes['layer5'],
-                          fit: BoxFit.scaleDown,
-                        ),
-                      ],
+                Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Container(
+                    child: SlideTransition(
+                      position: AnimationTween.fromRight(c),
+                      child: Image.asset(
+                        pageRes['layer5'],
+                        fit: BoxFit.scaleDown,
+                      ),
                     ),
                   ),
                 ),
               ],
-            ),
-          ],
         ),
       ),
     );
