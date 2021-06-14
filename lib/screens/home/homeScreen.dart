@@ -10,8 +10,10 @@ import 'package:zelese/components/utilities/vertivalDevider_dynamic.dart';
 import 'package:zelese/screens/phoneScreen/CLINICALLY/CLINICALLY.dart';
 import 'package:zelese/screens/phoneScreen/EFFICACY/EFFICACY.dart';
 import 'package:zelese/screens/phoneScreen/TOLERABILITY/TOLERABILITY.dart';
+import 'package:zelese/screens/phoneScreen/discomfort/discomfortPhone.dart';
 import 'package:zelese/screens/phoneScreen/homeViewer/homePager.dart';
 import 'package:zelese/screens/phoneScreen/indication/indicationScreen.dart';
+import 'package:zelese/screens/phoneScreen/usageTips/usageTips.dart';
 import 'package:zelese/screens/phoneScreen/whatIsZelese/whatIsZelesse.dart';
 import 'package:zelese/screens/tabletScreen/CLINICALLYLandScab/CLINICALLY.dart';
 import 'package:zelese/screens/tabletScreen/EFFICACYLand/EFFICACY.dart';
@@ -85,11 +87,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
     List<Widget> _list = <Widget>[
       new HomePager(),
+      new TheDiscomfortPhones(),
       new WhatIsZelesse(),
       new IndicationScreen(),
       new EFFICACY(),
       new CLINICALLY(),
       new TOLERABILITY(),
+      new UsageTipsPhonetic(),
     ];
 
     List<Widget> _listLandScape = <Widget>[
@@ -142,7 +146,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             height: AppStyleConfig.appDimensions['AppTopBarHeight'],
             child: Container(
-              margin: EdgeInsets.all(10),
+              margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -163,8 +167,9 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
 
         Expanded(
-          flex: 12,
+          flex: 10,
           child: Container(
+            margin: EdgeInsets.fromLTRB(20, 15, 20, 0),
             child: Stack(
               children: [
                 PageView(
@@ -185,62 +190,121 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Visibility(
                     visible: _isMenuVisable,
                     child: Container(
-                      margin: EdgeInsets.all(10),
+                      margin: EdgeInsets.fromLTRB(15, 5, 15, 0),
                       decoration: myBoxDecoration(),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          CustomAppBarButton(
-                              'ZELESSE', 15, 'MinionPro', Colors.white, null,
-                              () {
-                            setState(() {
-                              pageController.jumpToPage(1);
-                              _isMenuVisable = false;
-                            });
-                          }),
+                          Container(
+                            margin: EdgeInsets.only(left: 20),
+                            child: CustomAppBarButton(
+                                'The discomfort',
+                                18,
+                                'Roboto',
+                                AppStyleConfig.appColors['lima'],
+                                null, () {
+                              setState(() {
+                                pageController.jumpToPage(1);
+                                _isMenuVisable = false;
+                              });
+                            }),
+                          ),
                           Divider(
                             color: Colors.white,
                           ),
-                          CustomAppBarButton('INDICATIONS', 15, 'MinionPro',
-                              Colors.white, null, () {
-                            setState(() {
-                              pageController.jumpToPage(2);
-                              _isMenuVisable = false;
-                            });
-                          }),
+                          Container(
+                            margin: EdgeInsets.only(left: 20),
+                            child: CustomAppBarButton('ZELESSE', 18, 'Roboto',
+                                AppStyleConfig.appColors['lima'], null, () {
+                              setState(() {
+                                pageController.jumpToPage(2);
+                                _isMenuVisable = false;
+                              });
+                            }),
+                          ),
                           Divider(
                             color: Colors.white,
                           ),
-                          CustomAppBarButton(
-                              'EFFICACY', 15, 'MinionPro', Colors.white, null,
-                              () {
-                            setState(() {
-                              pageController.jumpToPage(3);
-                              _isMenuVisable = false;
-                            });
-                          }),
+                          Container(
+                            margin: EdgeInsets.only(left: 20),
+                            child: CustomAppBarButton(
+                                'INDICATIONS',
+                                18,
+                                'Roboto',
+                                AppStyleConfig.appColors['lima'],
+                                null, () {
+                              setState(() {
+                                pageController.jumpToPage(3);
+                                _isMenuVisable = false;
+                              });
+                            }),
+                          ),
                           Divider(
                             color: Colors.white,
                           ),
-                          CustomAppBarButton('CLINICALLY EFFICACY', 15,
-                              'MinionPro', Colors.white, null, () {
-                            setState(() {
-                              pageController.jumpToPage(4);
-                              _isMenuVisable = false;
-                            });
-                          }),
+                          Container(
+                            margin: EdgeInsets.only(left: 20),
+                            child: CustomAppBarButton('EFFICACY', 18, 'Roboto',
+                                AppStyleConfig.appColors['lima'], null, () {
+                              setState(() {
+                                pageController.jumpToPage(4);
+                                _isMenuVisable = false;
+                              });
+                            }),
+                          ),
                           Divider(
                             color: Colors.white,
                           ),
-                          CustomAppBarButton('TOLERABILITY', 15, 'MinionPro',
-                              Colors.white, null, () {
-                            setState(() {
-                              pageController.jumpToPage(5);
-                              _isMenuVisable = false;
-                            });
-                          }),
+                          Container(
+                            margin: EdgeInsets.only(left: 20),
+                            child: CustomAppBarButton(
+                                'CLINICALLY EFFICACY',
+                                18,
+                                'Roboto',
+                                AppStyleConfig.appColors['lima'],
+                                null, () {
+                              setState(() {
+                                pageController.jumpToPage(5);
+                                _isMenuVisable = false;
+                              });
+                            }),
+                          ),
+                          Divider(
+                            color: Colors.white,
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 20),
+                            child: CustomAppBarButton(
+                                'TOLERABILITY',
+                                18,
+                                'Roboto',
+                                AppStyleConfig.appColors['lima'],
+                                null, () {
+                              setState(() {
+                                pageController.jumpToPage(6);
+                                _isMenuVisable = false;
+                              });
+                            }),
+                          ),
+                          Divider(
+                            color: Colors.white,
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 20),
+                            child: CustomAppBarButton(
+                                'Usage tips',
+                                18,
+                                'Roboto',
+                                AppStyleConfig.appColors['lima'],
+                                null, () {
+                              setState(() {
+                                pageController.jumpToPage(7);
+                                _isMenuVisable = false;
+                              });
+                            }),
+                          ),
                         ],
                       ),
                     ),
@@ -251,7 +315,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         //bottomBar
-        bottomBar(),
+        Expanded(flex: 1, child: bottomBarPhone())
       ],
     );
   }
@@ -515,7 +579,7 @@ class _HomeScreenState extends State<HomeScreen> {
         Expanded(
           flex: 8,
           child: Container(
-            margin: EdgeInsets.fromLTRB(30,15, 30, 15),
+            margin: EdgeInsets.fromLTRB(30, 15, 30, 15),
             child: Stack(children: [
               PageView(
                 children: _listLandScape,
@@ -667,6 +731,99 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             Flexible(
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Container(
+                  child: Image.asset('assets/images/logoCompany1.png',
+                      fit: BoxFit.scaleDown),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  bottomBarPhone() {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+        color: AppStyleConfig.appColors['primary'],
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 1,
+            blurRadius: 2,
+            offset: Offset(0, 2), // changes position of shadow
+          ),
+        ],
+      ),
+      child: Container(
+        margin: EdgeInsets.fromLTRB(15, 0, 15, 0),
+        child: Row(
+          children: [
+            Expanded(
+              flex: 3,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: IconButton(
+                      icon: SvgPicture.asset(
+                        'assets/images/icons/arrowBack.svg',
+                      ),
+                      onPressed: previousPage,
+                    ),
+                  ),
+                  Flexible(
+                    child: CustomVerticalColor(
+                      color: AppStyleConfig.appColors['orgwany'],
+                      height: 40,
+                    ),
+                  ),
+                  Expanded(
+                    child: IconButton(
+                        icon: SvgPicture.asset(
+                          'assets/images/icons/homeIcon.svg',
+                        ),
+                        onPressed: () {
+                          pageController.jumpToPage(0);
+                        }),
+                  ),
+                  Flexible(
+                    child: CustomVerticalColor(
+                      color: AppStyleConfig.appColors['orgwany'],
+                      height: 40,
+                    ),
+                  ),
+                  Expanded(
+                    child: IconButton(
+                      icon: SvgPicture.asset(
+                          'assets/images/icons/dashBoeardIcon.svg'),
+                      onPressed: showDrawer,
+                    ),
+                  ),
+                  Flexible(
+                    child: CustomVerticalColor(
+                      color: AppStyleConfig.appColors['orgwany'],
+                      height: 40,
+                    ),
+                  ),
+                  Expanded(
+                    child: IconButton(
+                        icon: SvgPicture.asset(
+                            'assets/images/icons/nextArrowIcon.svg'),
+                        onPressed: nextPage),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              flex: 2,
               child: Align(
                 alignment: Alignment.centerRight,
                 child: Container(

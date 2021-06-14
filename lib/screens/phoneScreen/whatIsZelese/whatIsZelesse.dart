@@ -13,49 +13,44 @@ class WhatIsZelesse extends StatefulWidget {
 
 class _WhatIsZelesseState extends State<WhatIsZelesse>
     with TickerProviderStateMixin {
-  AnimationController c, zoomC;
-  Animation zoomInAnimate;
+  AnimationController c;
 
   @override
   void initState() {
     super.initState();
-    zoomC = AnimationController(vsync: this, duration: Duration(seconds: 1));
-    zoomInAnimate = Tween<double>(begin: 0.0, end: 300.0).animate(zoomC);
     c = AnimationController(duration: const Duration(seconds: 2), vsync: this)
-      ..forward().whenComplete(() => {zoomC..forward(), c.resync(this)});
+      ..forward().whenComplete(() => {c.resync(this)});
   }
 
   @override
   Widget build(BuildContext context) {
     var pageRes = <String, String>{
-      'layer1': 'assets/images/whatTheZeleseLayer1.png',
-      'layer2': 'assets/images/whatTheZeleseLayer2.png',
-      'layer3': 'assets/images/whatTheZeleseLayer3.png',
-      'layer4': 'assets/images/whatTheZeleseLayer4.png',
-      'layer5': 'assets/images/whatTheZeleseLayer5.png',
+      'layer1': 'assets/images/phone/whatzelesse/layer1.png',
+      'layer2': 'assets/images/phone/whatzelesse/layer2.png',
+      'layer3': 'assets/images/phone/whatzelesse/layer3.png',
+      'layer4': 'assets/images/phone/whatzelesse/layer4.png',
+      'layer5': 'assets/images/phone/whatzelesse/layer5.png',
+      'layer6': 'assets/images/phone/whatzelesse/layer6.png',
+      'layer7': 'assets/images/phone/whatzelesse/layer7.png',
     };
 
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
     return Container(
-      width: width,
-      height: height,
-      margin: EdgeInsets.all(20),
       color: AppStyleConfig.appColors['backgrounLight'],
       child: Builder(
         builder: (context) => ListView(children: [
           Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                width: width,
                 child: SlideTransition(
                   position: AnimationTween.fromTop(c),
                   child: Image.asset(
                     pageRes['layer1'],
-                    fit: BoxFit.fill,
-                    width: width,
+                    fit: BoxFit.scaleDown,
                   ),
                 ),
               ),
@@ -65,8 +60,7 @@ class _WhatIsZelesseState extends State<WhatIsZelesse>
                   position: AnimationTween.fromRight(c),
                   child: Image.asset(
                     pageRes['layer2'],
-                    fit: BoxFit.fill,
-                    width: width,
+                    fit: BoxFit.scaleDown,
                   ),
                 ),
               ),
@@ -100,6 +94,26 @@ class _WhatIsZelesseState extends State<WhatIsZelesse>
                   ),
                 ),
               ),
+              Container(
+                margin: EdgeInsets.only(top: 20),
+                child: SlideTransition(
+                  position: AnimationTween.fromLeft(c),
+                  child: Image.asset(
+                    pageRes['layer6'],
+                    fit: BoxFit.scaleDown,
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 20),
+                child: SlideTransition(
+                  position: AnimationTween.fromLeft(c),
+                  child: Image.asset(
+                    pageRes['layer7'],
+                    fit: BoxFit.scaleDown,
+                  ),
+                ),
+              ),
             ],
           ),
         ]),
@@ -111,6 +125,5 @@ class _WhatIsZelesseState extends State<WhatIsZelesse>
   void dispose() {
     super.dispose();
     c.dispose();
-    zoomC.dispose();
   }
 }

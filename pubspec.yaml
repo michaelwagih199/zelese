@@ -29,7 +29,7 @@ flutter_icons:
   ios: true
 
 flutter:
-
+  
   uses-material-design: true
 
   assets:
@@ -43,7 +43,14 @@ flutter:
     - assets/images/tablet/efficacy/
     - assets/images/tablet/clinicality/
     - assets/images/tablet/tolarability/
-
+    - assets/images/phone/homePhone/
+    - assets/images/phone/theDiscomfort/
+    - assets/images/phone/whatzelesse/
+    - assets/images/phone/indication/
+    - assets/images/phone/efficacy/
+    - assets/images/phone/clinical/
+    - assets/images/phone/tolarability/
+    - assets/images/phone/usageTips/
 
   fonts:
     - family: MinionPro

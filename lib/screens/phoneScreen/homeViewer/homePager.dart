@@ -5,29 +5,26 @@ import 'package:zelese/theme/appStyleConfig.dart';
 
 class HomePager extends StatefulWidget {
   const HomePager({Key key}) : super(key: key);
-
   @override
   _HomePagerState createState() => _HomePagerState();
 }
 
 class _HomePagerState extends State<HomePager> with TickerProviderStateMixin {
-  AnimationController c, zoomC;
-  Animation zoomInAnimate;
 
+  AnimationController c;
+  
   var pageRes = <String, String>{
-    'layer1': 'assets/images/homePagelayer1.svg',
-    'layer2': 'assets/images/homePagelayer2.png',
-    'layer3': 'assets/images/homePagelayer3.png',
-    'layer4': 'assets/images/homeVector.png',
+    'layer1': 'assets/images/phone/homePhone/layer1.png',
+    'layer2': 'assets/images/phone/homePhone/layer2.png',
+    'layer3': 'assets/images/phone/homePhone/layer3.png',
+    'layer4': 'assets/images/phone/homePhone/layer4.png',
   };
 
   @override
   void initState() {
     super.initState();
-    zoomC = AnimationController(vsync: this, duration: Duration(seconds: 1));
-    zoomInAnimate = Tween<double>(begin: 0.0, end: 300.0).animate(zoomC);
-    c = AnimationController(duration: const Duration(seconds: 2), vsync: this)
-      ..forward().whenComplete(() => {zoomC..forward(), c.resync(this)});
+     c = AnimationController(duration: const Duration(seconds: 2), vsync: this)
+      ..forward().whenComplete(() => { c.resync(this)});
   }
 
   @override
@@ -36,29 +33,30 @@ class _HomePagerState extends State<HomePager> with TickerProviderStateMixin {
     double height = MediaQuery.of(context).size.height;
 
     return Container(
-      margin: EdgeInsets.all(10),
       color: AppStyleConfig.appColors['backgrounLight'],
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Expanded(
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisSize: MainAxisSize.max,
               children: [
-                Expanded(
+                Flexible(
                   child: SlideTransition(
                     position: AnimationTween.fromRight(c),
-                    child: SvgPicture.asset(
-                      pageRes['layer1'],
+                    child: Image.asset(
+                      pageRes['layer3'],
                       fit: BoxFit.scaleDown,
                     ),
                   ),
                 ),
 
-                Expanded(
+                Flexible(
                   child: SlideTransition(
                     position: AnimationTween.fromLeft(c),
                     child: Image.asset(
-                      pageRes['layer2'],
+                      pageRes['layer1'],
                       fit: BoxFit.scaleDown,
                     ),
                   ),
@@ -67,23 +65,23 @@ class _HomePagerState extends State<HomePager> with TickerProviderStateMixin {
             ),
           ),
           Expanded(
-            flex: 2,
+            flex: 3,
             child: Container(
               child: SlideTransition(
                 position: AnimationTween.fromBottom(c),
                 child: Image.asset(
-                  pageRes['layer4'],
-                  fit: BoxFit.fill,
+                  pageRes['layer2'],
+                  fit: BoxFit.contain,
                 ),
               ),
             ),
           ),
-          Expanded(
+          Flexible(
             child: Container(
               child: SlideTransition(
                 position: AnimationTween.fromRight(c),
                 child: Image.asset(
-                  pageRes['layer3'],
+                  pageRes['layer4'],
                   fit: BoxFit.scaleDown,
                 ),
               ),
@@ -93,7 +91,6 @@ class _HomePagerState extends State<HomePager> with TickerProviderStateMixin {
       ),
     );
   }
-
 
   @override
   void dispose() {

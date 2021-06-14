@@ -11,7 +11,7 @@ class HomePagerLandScabe extends StatefulWidget {
 }
 
 class _HomePagerLandScabeState extends State<HomePagerLandScabe>
-    with TickerProviderStateMixin {
+  with TickerProviderStateMixin {
   AnimationController c;
 
   var pageRes = <String, String>{
